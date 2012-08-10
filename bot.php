@@ -1,4 +1,10 @@
 <?php
+
+/*
+bodr_bondr_bot by Nicholas Sideras is licensed under a Creative Commons Attribution 3.0 Unported License.
+*/
+
+
 header("Content-Type: text/plain");
 
 
