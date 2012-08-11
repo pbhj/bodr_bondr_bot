@@ -75,7 +75,7 @@ $pd['filter_to_subreddit'] = $nondefault_subreddit;
 /*$pd['already_submitted'] = check_if_submitted($pd['bestof'], $pd['url']);*/
 
 
-$title = $pd['title'];
+$title = '[/r/'.$pd['original_subreddit'].'] '.$pd['title'];
 $link = $pd['url'];
 $subreddit = $pd['filter_to_subreddit'];
 
