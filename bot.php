@@ -72,10 +72,7 @@ $pd['filter_to_subreddit'] = $default_subreddit;
 $pd['filter_to_subreddit'] = $nondefault_subreddit;
 }
 
-$pd['already_submitted'] = check_if_submitted($pd['bestof'], $pd['url']);
-
-
-if (strcasecmp($pd['already_submitted'], 'false') == 0){ //as long as it hasn't been submitted
+/*$pd['already_submitted'] = check_if_submitted($pd['bestof'], $pd['url']);*/
 
 
 $title = $pd['title'];
@@ -84,9 +81,12 @@ $subreddit = $pd['filter_to_subreddit'];
 
 $storyResponse = $reddit->createStory($title, $link, $subreddit);
 
+if (strcasecmp($storyResponse, 'that link has already been submitted') == 0){ //as long as it hasn't been submitted
+echo 'response: ' . $storyResponse."\r";
+
 //$commentResponse = $reddit->addComment(get_story_name($storyResponse), "Original /r/bestof post:\n\n[$title](".$pd['permalink'].") by /u/".$pd['author']);
 
-//print_r(commentResponse);
+//print_r($commentResponse);
 
 }
 
@@ -168,6 +168,7 @@ function check_if_submitted($subreddit, $url)
 {
 $headers =  get_headers('http://www.reddit.com/r/'.$subreddit.'/submit?url='.$url, 1);
 $location = $headers['Location'];
+print_r($headers);
 
 if(strpos($location, '?already_submitted=true') === false)
 {
